@@ -5,6 +5,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import UserRouter from "./routes/user.router.js";
 import ProjectRouter from "./routes/project.router.js";
+import connectDb from "./db/db.js";
 
 const app = express();
 
@@ -35,16 +36,12 @@ app.use("/api/users", UserRouter);
 app.use("/api/projects", ProjectRouter);
 
 // --- MongoDB connection ---
-const connectDb = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB connected");
-  } catch (err) {
-    console.error(err);
-  }
-};
-connectDb();
-
+connectDb().then(()=>{
+  app.listen(process.env.PORT||3001, () => {
+    console.log("Server running on port 3001");
+  });
+})
+connect
 // Export handler for Vercel
 export default app;
 export const handler = serverless(app);
