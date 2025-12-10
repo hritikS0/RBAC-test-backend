@@ -3,9 +3,9 @@ import express from "express";
 import serverless from "serverless-http";
 import cors from "cors";
 import mongoose from "mongoose";
-import UserRouter from "./routes/user.router.js";
-import ProjectRouter from "./routes/project.router.js";
-import connectDb from "./db/db.js";
+import UserRouter from "../routes/user.router.js";
+import ProjectRouter from "../routes/project.router.js";
+import connectDb from "../db/db.js";
 
 const app = express();
 
