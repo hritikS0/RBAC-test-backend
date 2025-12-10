@@ -15,9 +15,15 @@ app.use(express.json());
 
 app.use("/api/users", UserRouter);
 app.use("/api/projects", ProjectRouter);
-connectDb().then(() => {  
-  app.listen(process.env.PORT || 3001, () => {  
-    console.log(`Server running on port ${process.env.PORT || 3001}`);
+
+// For local development
+if (process.env.NODE_ENV !== "production") {
+  connectDb().then(() => {  
+    app.listen(process.env.PORT || 3001, () => {  
+      console.log(`Server running on port ${process.env.PORT || 3001}`);
+    })
   })
-})
+}
+
+export default app;
 
