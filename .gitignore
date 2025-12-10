@@ -1,0 +1,71 @@
+# ---------------------------------------------------------------- #
+#                  COMMON DEPENDENCY DIRECTORIES                   #
+# ---------------------------------------------------------------- #
+/node_modules
+/dist
+/dist-ssr
+/build
+/coverage
+/es/
+/lib/
+/tmp/
+
+# ---------------------------------------------------------------- #
+#                              LOGS                                #
+# ---------------------------------------------------------------- #
+# Standard log files
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ---------------------------------------------------------------- #
+#                           ENVIRONMENT                            #
+# ---------------------------------------------------------------- #
+# Ignore all environment variables files
+.env
+.env.local
+.env.*.local
+*.local
+.vscode-test/
+
+# ---------------------------------------------------------------- #
+#                     EDITOR & OS FILES                            #
+# ---------------------------------------------------------------- #
+.vscode/*
+!.vscode/extensions.json  # Keep extensions recommended for the project
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# Vim/Nano swap files
+*~
+*.bak
+
+# ---------------------------------------------------------------- #
+#                     NODE BACKEND SPECIFIC                        #
+# ---------------------------------------------------------------- #
+# Compiled/Transpiled JS output from TypeScript/Babel (if not using 'dist')
+/out/
+/lib-es/
+
+# Database files
+*.sqlite
+*.sqlite3
+/data/*.db
+/db/*.sqlite
+/db/*.sqlite3
+
+# Uploaded/generated static files (often sensitive or large)
+/uploads/
+/public/uploads/
+
+# JWT/Session storage files if used locally (e.g., development keys)
+/keys/
+/secrets/
