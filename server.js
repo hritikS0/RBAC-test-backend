@@ -1,19 +1,23 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import connectDb from "./db/db.js";
+// ConnectDb utility function that handles connection pooling/caching
+import connectDb from "./db/db.js"; 
 import UserRouter from "./routes/user.router.js";
 import ProjectRouter from "./routes/project.router.js";
 
 dotenv.config();
-connectDb();
+
+// Ensure the database connection is attempted on every load.
+// If connectDb is properly caching the connection, this is efficient.
+connectDb(); // <--- KEEP THIS AT THE TOP
+
 const app = express();
 
+// --- CORS Configuration (Your Fix) ---
 const allowedOrigins = [
   'http://localhost:5173', 
-  
   'https://rbac-test-backend-git-main-hritiks0s-projects.vercel.app',
-
 ];
 
 const corsOptions = {
@@ -24,23 +28,24 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true, // Crucial if you use cookies/sessions/auth headers
-  optionsSuccessStatus: 200 
+  credentials: true, 
+  optionsSuccessStatus: 204 // Standard for preflight success
 };
 
 app.use(cors(corsOptions));
+// ---------------------------------
 
 app.use(express.json());
 
+// --- Routes ---
 app.use("/api/users", UserRouter);
 app.use("/api/projects", ProjectRouter);
 
+// Test Route
 app.get("/", (req, res) => {
   res.status(200).json({ 
-    message: "RBAC Backend is running! Access /api/users or /api/projects", 
-    environment: process.env.NODE_ENV 
+    message: "RBAC Backend is running! Check logs if /api/ routes fail.", 
   });
 });
 
-
-export default app; 
+export default app;
